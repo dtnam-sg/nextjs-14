@@ -9,19 +9,20 @@ import Menu from "./Menu";
 import Loader from "./Loader";
 const LeftSideBar = () => {
   const { user, isLoaded } = useUser();
-  console.log("🚀 ~ LeftSideBar ~ user:", user);
   const [loading, setLoading] = useState(false);
   const [userData, setUserData] = useState({});
 
   const getUser = async () => {
-    const response = await fetch(`/api/user/${user.id}`);
+    const response = await fetch(`/api/user/${user?.id}`);
     const data = await response.json();
     setUserData(data);
     setLoading(false);
   };
 
   useEffect(() => {
-    getUser();
+    if (user) {
+      getUser();
+    }
   }, [user]);
 
   return loading || !isLoaded ? (

@@ -20,7 +20,7 @@ const MainContainer = ({ children }) => {
           {title}
         </h1>
       </div>
-      <div className='h-creen overflow-y-scroll custom scrollbar'>
+      <div className='h-creen overflow-y-scroll custom-scrollbar'>
         {" "}
         {children}
       </div>
