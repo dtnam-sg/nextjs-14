@@ -7,13 +7,16 @@ import Image from "next/image";
 import { UserButton, useUser } from "@clerk/nextjs";
 import Menu from "./Menu";
 import Loader from "./Loader";
+import { dark } from "@clerk/themes";
+import { mockUser } from "@constants";
+
 const LeftSideBar = () => {
   const { user, isLoaded } = useUser();
   const [loading, setLoading] = useState(false);
-  const [userData, setUserData] = useState({});
+  const [userData, setUserData] = useState(mockUser);
 
   const getUser = async () => {
-    const response = await fetch(`/api/user/${user?.id}`);
+    const response = await fetch(`/api/user/${user.id}`);
     const data = await response.json();
     setUserData(data);
     setLoading(false);
@@ -25,7 +28,7 @@ const LeftSideBar = () => {
     }
   }, [user]);
 
-  return loading || !isLoaded ? (
+  return loading || !isLoaded || !mockUser ? (
     <Loader />
   ) : (
     <div className='h-screen left-0 top-0 sticky overflow-auto px-10 py-6 flex flex-col gap-6 max-md:hidden custom-scrollbar'>
@@ -70,7 +73,7 @@ const LeftSideBar = () => {
         <Menu />
         <hr />
         <div className='flex gap-4 items-center'>
-          <UserButton />
+          <UserButton appearance={{ baseTheme: dark }} />
           <p className='text-light-1 text-body-bold'>Manage Account</p>
         </div>
       </div>
