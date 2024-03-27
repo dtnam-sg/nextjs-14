@@ -9,7 +9,7 @@ const Home = () => {
   const [loading, setLoading] = useState(true);
   const [feedPost, setFeedPost] = useState([]);
   const getFeedPost = async () => {
-    const response = await fetch(`/api/posts/${getFeedPost()}`);
+    const response = await fetch(`/api/posts`);
     const data = await response.json();
     setFeedPost(data);
     setLoading(false);
