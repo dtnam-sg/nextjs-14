@@ -1,12 +1,12 @@
 "use client";
 import PostCard from "@/components/cards/PostCard";
 import Loader from "@/components/layout/Loader";
-import { useUser } from "@clerk/nextjs";
-import React, { useState } from "react";
+import { UserButton, useUser } from "@clerk/nextjs";
+import React, { useEffect, useState } from "react";
 
 const Home = () => {
   const { user, isLoaded } = useUser();
-  const [loading, setLoading] = useState(trueu);
+  const [loading, setLoading] = useState(true);
   const [feedPost, setFeedPost] = useState([]);
   const getFeedPost = async () => {
     const response = await fetch(`/api/posts/${getFeedPost()}`);
